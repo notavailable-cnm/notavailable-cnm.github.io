@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Donate for the Fatcat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            background-color: black; /* 如果视频加载失败，背景是黑色 */
+            position: relative;
+        }
+
+        /* 背景视频全屏覆盖 */
+        .background-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -4;
+        }
+
+        /* 流动彩虹层 */
+        .rainbow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(270deg, 
+                red, orange, yellow, green, cyan, blue, violet, red);
+            background-size: 200% 200%;
+            animation: rainbowFlow 8s linear infinite, rainbowShift 12s ease-in-out infinite;
+            mix-blend-mode: screen;
+            opacity: 0.5;
+            z-index: -3;
+        }
+
+        @keyframes rainbowFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rainbowShift {
+            0%, 100% { opacity: 0.4; filter: hue-rotate(0deg); }
+            50% { opacity: 0.8; filter: hue-rotate(360deg); }
+        }
+
+        /* 星光粒子层 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            overflow: hidden;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle linear infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* 内容容器（可以滚动） */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        img, video {
+            border: 5px solid rgba(255,255,255,0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 90%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景视频 -->
+    <video class="background-video" src="background.mp4" autoplay muted loop></video>
+
+    <!-- 流动彩虹层 -->
+    <div class="rainbow-overlay"></div>
+
+    <!-- 星光粒子层 -->
+    <div class="stars" id="stars"></div>
+
+    <!-- 主内容 -->
+    <div class="content">
+        <h1>DONATE FOR THE FATCAT</h1>
+        <h2>Fatcat has a dream of McDonald's</h2>
+        <h2>Give him McDonald's by donating</h2>
+
+        <img src="fr.webp" alt="Fatcat">
+        <br>
+        <video src="wx.mp4" autoplay muted loop></video>
+
+        <!-- 额外高度测试滚动 -->
+        <p style="margin-top:50vh;">⬇ 滚动查看更多内容 ⬇</p>
+        <img src="fr.webp" alt="Fatcat Again">
+    </div>
+
+    <script>
+        // 生成星光粒子
+        const starsContainer = document.getElementById("stars");
+        const starCount = 50; // 星星数量
+        for (let i = 0; i < starCount; i++) {
+            let star = document.createElement("div");
+            let size = Math.random() * 3 + 1; // 星星大小
+            let duration = Math.random() * 5 + 3; // 闪烁速度
+            let delay = Math.random() * 5; // 延迟
+
+            star.classList.add("star");
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${duration}s`;
+            star.style.animationDelay = `${delay}s`;
+
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
