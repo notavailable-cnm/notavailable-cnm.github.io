@@ -127,18 +127,18 @@
         <video src="wx.mp4" autoplay muted loop></video>
 
         <!-- 额外高度测试滚动 -->
-        <p style="margin-top:50vh;">⬇ 滚动查看更多内容 ⬇</p>
+        <p style="margin-top:50vh;">⬇ 滚动查看更美的胖猫 ⬇</p>
         <img src="fr.webp" alt="Fatcat Again">
     </div>
 
     <script>
         // 生成星光粒子
         const starsContainer = document.getElementById("stars");
-        const starCount = 50; // 星星数量
+        const starCount = 100; // 星星数量
         for (let i = 0; i < starCount; i++) {
             let star = document.createElement("div");
             let size = Math.random() * 3 + 1; // 星星大小
-            let duration = Math.random() * 5 + 3; // 闪烁速度
+            let duration = Math.random() * 7+ 10; // 闪烁速度
             let delay = Math.random() * 5; // 延迟
 
             star.classList.add("star");
